@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'fileutils'
-require 'logger'
 
 module Pickpocket
   RSpec.describe TokenHandler do

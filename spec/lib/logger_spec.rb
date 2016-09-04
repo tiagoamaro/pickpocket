@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'logger'
 
 module Pickpocket
   RSpec.describe Logger do

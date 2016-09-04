@@ -9,5 +9,7 @@ describe Pickpocket do
     it('POCKET_OAUTH_AUTHORIZE_URL') { expect(Pickpocket::POCKET_OAUTH_AUTHORIZE_URL).to eq('https://getpocket.com/v3/oauth/authorize') }
     it('POCKET_OAUTH_REQUEST_URL') { expect(Pickpocket::POCKET_OAUTH_REQUEST_URL).to eq('https://getpocket.com/v3/oauth/request') }
     it('POCKET_RETRIEVE_URL') { expect(Pickpocket::POCKET_RETRIEVE_URL).to eq('https://getpocket.com/v3/get') }
+    it('POCKET_SEND_URL') { expect(Pickpocket::POCKET_SEND_URL).to eq('https://getpocket.com/v3/send') }
+    it('POCKET_USER_AUTHORIZE_URL') { expect(Pickpocket::POCKET_USER_AUTHORIZE_URL).to eq('https://getpocket.com/auth/authorize') }
   end
 end

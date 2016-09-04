@@ -6,4 +6,6 @@ module Pickpocket
   POCKET_OAUTH_AUTHORIZE_URL = 'https://getpocket.com/v3/oauth/authorize'
   POCKET_OAUTH_REQUEST_URL   = 'https://getpocket.com/v3/oauth/request'
   POCKET_RETRIEVE_URL        = 'https://getpocket.com/v3/get'
+  POCKET_SEND_URL            = 'https://getpocket.com/v3/send'
+  POCKET_USER_AUTHORIZE_URL  = 'https://getpocket.com/auth/authorize'
 end

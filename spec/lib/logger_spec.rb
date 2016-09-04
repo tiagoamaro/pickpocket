@@ -9,17 +9,13 @@ module Pickpocket
       let(:tempfile) { Tempfile.new('tempfile_logger') }
       let(:tempfile_logger) { ::Logger.new(tempfile) }
 
-      before(:each) do
-        tempfile_logger.formatter = proc { |_, _, _, msg| msg }
-      end
-
       it do
         pickpocket_logger.logger = tempfile_logger
         pickpocket_logger.info('Overriding Logger')
 
         tempfile.rewind
         result = tempfile.read
-        expect(result).to eq('Overriding Logger')
+        expect(result).to include('Overriding Logger')
       end
     end
   end

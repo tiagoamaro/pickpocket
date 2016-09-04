@@ -1,18 +1,25 @@
 require 'spec_helper'
+require 'logger'
 
 module Pickpocket
   RSpec.describe Logger do
-    describe 'allows custom logger' do
-      let(:tempfile_logger) { Tempfile.new('tempfile_logger') }
-      let(:logger) { described_class.new(tempfile_logger) }
+    let(:pickpocket_logger) { described_class.new }
 
-      it 'log to custom logger' do
-        logger.info('info message')
-        logger.warn('warning message')
+    describe 'allows logging override' do
+      let(:tempfile) { Tempfile.new('tempfile_logger') }
+      let(:tempfile_logger) { ::Logger.new(tempfile) }
 
-        tempfile_logger.rewind
-        result = tempfile_logger.read
-        expect(result).to eq(%Q{[Pickpocket] info message\n[Pickpocket] warning message\n})
+      before(:each) do
+        tempfile_logger.formatter = proc { |_, _, _, msg| msg }
+      end
+
+      it do
+        pickpocket_logger.logger = tempfile_logger
+        pickpocket_logger.info('Overriding Logger')
+
+        tempfile.rewind
+        result = tempfile.read
+        expect(result).to eq('Overriding Logger')
       end
     end
   end

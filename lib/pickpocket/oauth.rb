@@ -3,10 +3,6 @@ require 'net/http'
 
 module Pickpocket
   class Oauth
-    POCKET_HOMEPAGE            = 'https://getpocket.com'
-    POCKET_OAUTH_REQUEST_URL   = 'https://getpocket.com/v3/oauth/request'
-    POCKET_OAUTH_AUTHORIZE_URL = 'https://getpocket.com/v3/oauth/authorize'
-
     attr_reader :token_handler
     attr_accessor :logger
 

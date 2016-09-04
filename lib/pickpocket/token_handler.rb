@@ -1,11 +1,11 @@
 require 'fileutils'
 
 module Pickpocket
-  class Token
+  class TokenHandler
     TOKEN_FOLDER = File.join(Dir.home, '.pickpocket')
     TOKEN_FILE   = File.join(TOKEN_FOLDER, 'token')
 
-    attr_reader :logger
+    attr_accessor :logger
 
     def initialize
       @logger = Pickpocket::Logger.new
@@ -24,6 +24,7 @@ module Pickpocket
       file.read
     rescue Errno::ENOENT => _
       logger.warn('Token file does not exist. Make sure you request authorization before proceeding.')
+      :no_token
     end
 
     private

@@ -1,7 +1,7 @@
 require 'pickpocket/version'
 
 require 'pickpocket/logger'
-require 'pickpocket/token'
+require 'pickpocket/token_handler'
 require 'pickpocket/oauth'
 
 module Pickpocket

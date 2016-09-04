@@ -8,11 +8,12 @@ module Pickpocket
     POCKET_OAUTH_REQUEST_URL   = 'https://getpocket.com/v3/oauth/request'
     POCKET_OAUTH_AUTHORIZE_URL = 'https://getpocket.com/v3/oauth/authorize'
 
-    attr_reader :logger, :token
+    attr_reader :token_handler
+    attr_accessor :logger
 
     def initialize
-      @logger = Pickpocket::Logger.new
-      @token  = Token.new
+      @logger        = Pickpocket::Logger.new
+      @token_handler = TokenHandler.new
     end
 
     def request_authorization
@@ -26,11 +27,11 @@ module Pickpocket
       auth_url       = %Q{https://getpocket.com/auth/authorize?request_token=#{response_token}&redirect_uri=#{POCKET_HOMEPAGE}}
 
       logger.info %Q{To continue, authorize this app opening the following URL: #{auth_url}}
-      token.save(response_token)
+      token_handler.save(response_token)
     end
 
     def authorize
-      response_token = token.read
+      response_token = token_handler.read
       uri            = URI(POCKET_OAUTH_AUTHORIZE_URL)
       Net::HTTP.post_form(uri, {
           consumer_key: CONSUMER_KEY,

@@ -1,4 +1,4 @@
-require 'pickpocket/version'
+require 'constants'
 
 require 'pickpocket/logger'
 require 'pickpocket/token_handler'

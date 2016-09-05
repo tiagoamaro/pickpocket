@@ -24,11 +24,11 @@ module Pickpocket
         auth_url       = %Q{#{POCKET_USER_AUTHORIZE_URL}?request_token=#{response_token}&redirect_uri=#{POCKET_HOMEPAGE}}
 
         logger.info %Q{To continue, authorize this app opening the following URL: #{auth_url}}
-        token_handler.save(response_token)
+        token_handler.save_oauth(response_token)
       end
 
       def authorize
-        response_token = token_handler.read
+        response_token = token_handler.read_oauth
         uri            = URI(POCKET_OAUTH_AUTHORIZE_URL)
 
         response = Net::HTTP.post_form(uri, {
@@ -37,7 +37,7 @@ module Pickpocket
         })
 
         response_token = CGI::parse(response.body)['access_token'][0]
-        token_handler.save(response_token)
+        token_handler.save_authorization(response_token)
       end
     end
   end

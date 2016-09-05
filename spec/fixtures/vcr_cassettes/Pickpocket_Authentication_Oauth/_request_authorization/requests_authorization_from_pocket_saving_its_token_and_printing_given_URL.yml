@@ -5,7 +5,7 @@ http_interactions:
     uri: https://getpocket.com/v3/oauth/request
     body:
       encoding: US-ASCII
-      string: consumer_key=47753-a5647cc8204da8a727c7d1b5&redirect_uri=https%3A%2F%2Fgetpocket.com
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&redirect_uri=https%3A%2F%2Fgetpocket.com
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       Date:
-      - Sun, 04 Sep 2016 20:18:37 GMT
+      - Mon, 05 Sep 2016 18:26:21 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       P3p:
@@ -38,7 +38,7 @@ http_interactions:
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=sgusr0nds65781fe59dn04p153; path=/
+      - PHPSESSID=vmddfsls2jsacgfo3tehp1tpr4; path=/
       Status:
       - 200 OK
       Vary:
@@ -51,7 +51,7 @@ http_interactions:
       - keep-alive
     body:
       encoding: ASCII-8BIT
-      string: code=e6e388d8-b604-70d6-1f8e-49c2aa
+      string: code=5694adeb-fa9c-c95c-3b82-ab1d33
     http_version: 
-  recorded_at: Sun, 04 Sep 2016 20:18:37 GMT
+  recorded_at: Mon, 05 Sep 2016 18:26:21 GMT
 recorded_with: VCR 3.0.3

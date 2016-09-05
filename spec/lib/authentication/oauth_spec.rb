@@ -18,16 +18,16 @@ module Pickpocket::Authentication
         token_handler = oauth.token_handler
         tempfile.rewind
 
-        expect(tempfile.read).to include('https://getpocket.com/auth/authorize?request_token=e6e388d8-b604-70d6-1f8e-49c2aa&redirect_uri=https://getpocket.com')
-        expect(token_handler.read).to eq('e6e388d8-b604-70d6-1f8e-49c2aa')
+        expect(tempfile.read).to include('https://getpocket.com/auth/authorize?request_token=5694adeb-fa9c-c95c-3b82-ab1d33&redirect_uri=https://getpocket.com')
+        expect(token_handler.read_oauth).to eq('5694adeb-fa9c-c95c-3b82-ab1d33')
       end
     end
 
     describe '#authorize' do
-      it "authorizes Pickpocket using user's token" do
-        pending
-        result = oauth.authorize
-        expect(result.code).to eq('200')
+      it "authorizes Pickpocket using user's token, saving it to authorization_token" do
+        oauth.authorize
+        result = oauth.token_handler.read_authorization
+        expect(result).to eq('49858549-532d-55b1-62bc-21bf5b')
       end
     end
   end

@@ -3,9 +3,8 @@ require 'fileutils'
 module Pickpocket
   module Authentication
     class TokenHandler
-      TOKENS_FOLDER            = File.join(Dir.home, '.pickpocket')
-      OAUTH_TOKEN_FILE         = File.join(TOKENS_FOLDER, 'oauth_token')
-      AUTHORIZATION_TOKEN_FILE = File.join(TOKENS_FOLDER, 'authorization_token')
+      OAUTH_TOKEN_FILE         = File.join(HOME_FOLDER, 'oauth_token')
+      AUTHORIZATION_TOKEN_FILE = File.join(HOME_FOLDER, 'authorization_token')
 
       attr_accessor :logger
 
@@ -31,12 +30,12 @@ module Pickpocket
 
       private
 
-      def ensure_token_folder
-        FileUtils.mkdir_p(TOKENS_FOLDER)
+      def ensure_home_folder
+        FileUtils.mkdir_p(HOME_FOLDER)
       end
 
       def save_token(token:, path:)
-        ensure_token_folder
+        ensure_home_folder
 
         file = File.new(path, 'w')
         file.write(token)

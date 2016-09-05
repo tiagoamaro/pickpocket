@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Pickpocket do
   describe 'constants' do
+    it('HOME_FOLDER') { expect(Pickpocket::HOME_FOLDER).not_to be nil }
     it('CONSUMER_KEY') { expect(Pickpocket::CONSUMER_KEY).not_to be nil }
     it('VERSION') { expect(Pickpocket::VERSION).not_to be nil }
 

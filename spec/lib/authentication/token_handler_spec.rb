@@ -2,43 +2,70 @@ require 'spec_helper'
 
 module Pickpocket::Authentication
   RSpec.describe TokenHandler do
-    let(:token_file_path) { File.join(Dir.home, '.pickpocket', 'token') }
     let(:token_handler) { described_class.new }
 
-    describe '#save' do
-      it 'saves token to user token to ~/.pickpocket/token' do
-        token_handler.save('saved token!')
+    context 'saving tokens' do
+      describe '#save_oauth' do
+        let(:token_file_path) { File.join(Dir.home, '.pickpocket', 'oauth_token') }
 
-        result = File.read(token_file_path)
-        expect(result).to eq('saved token!')
+        it 'saves token to ~/.pickpocket/oauth_token' do
+          token_handler.save_oauth('oauth token!')
+
+          result = File.read(token_file_path)
+          expect(result).to eq('oauth token!')
+        end
+      end
+
+      describe '#save_authorization' do
+        let(:token_file_path) { File.join(Dir.home, '.pickpocket', 'authorization_token') }
+
+        it 'saves token to ~/.pickpocket/authorization_token' do
+          token_handler.save_authorization('authorization token!')
+
+          result = File.read(token_file_path)
+          expect(result).to eq('authorization token!')
+        end
       end
     end
 
-    describe '#read' do
+    context 'reading tokens' do
       context 'file exists' do
-        it 'reads token from token file' do
-          token_handler.save('read token!')
+        it '#read_oauth' do
+          token_handler.save_oauth('reading oauth token!')
 
-          result = token_handler.read
-          expect(result).to eq('read token!')
+          result = token_handler.read_oauth
+          expect(result).to eq('reading oauth token!')
+        end
+
+        it '#read_authorization' do
+          token_handler.save_authorization('reading authorization token!')
+
+          result = token_handler.read_authorization
+          expect(result).to eq('reading authorization token!')
         end
       end
 
       context 'file does not exist' do
-        let(:tempfile) { Tempfile.new('tempfile_logger') }
-        let(:tempfile_logger) { ::Logger.new(tempfile) }
+        let(:tempfile) { Tempfile.new('fake_logger') }
 
-        before(:each) do
-          token_handler.logger = tempfile_logger
-          FileUtils.rm(token_file_path)
+        before(:each) { token_handler.logger = ::Logger.new(tempfile) }
+
+        it '#read_oauth' do
+          FileUtils.rm(described_class::OAUTH_TOKEN_FILE)
+
+          result = token_handler.read_oauth
+          tempfile.rewind
+          expect(result).to eq(:no_token)
+          expect(tempfile.read).to include('OAuth Token file does not exist. Make sure you request authorization before proceeding.')
         end
 
-        it 'warns user about token file not existing' do
-          result = token_handler.read
-          tempfile.rewind
+        it '#read_authorization' do
+          FileUtils.rm(described_class::AUTHORIZATION_TOKEN_FILE)
 
+          result = token_handler.read_authorization
+          tempfile.rewind
           expect(result).to eq(:no_token)
-          expect(tempfile.read).to include('Token file does not exist. Make sure you request authorization before proceeding.')
+          expect(tempfile.read).to include('Authorization Token file does not exist. Make sure you request authorization before proceeding.')
         end
       end
     end

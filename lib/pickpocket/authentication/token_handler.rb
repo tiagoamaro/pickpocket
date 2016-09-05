@@ -3,8 +3,9 @@ require 'fileutils'
 module Pickpocket
   module Authentication
     class TokenHandler
-      TOKEN_FOLDER = File.join(Dir.home, '.pickpocket')
-      TOKEN_FILE   = File.join(TOKEN_FOLDER, 'token')
+      TOKENS_FOLDER            = File.join(Dir.home, '.pickpocket')
+      OAUTH_TOKEN_FILE         = File.join(TOKENS_FOLDER, 'oauth_token')
+      AUTHORIZATION_TOKEN_FILE = File.join(TOKENS_FOLDER, 'authorization_token')
 
       attr_accessor :logger
 
@@ -12,26 +13,42 @@ module Pickpocket
         @logger = Pickpocket::Logger.new
       end
 
-      def save(token)
-        ensure_token_folder
-
-        file = File.new(TOKEN_FILE, 'w')
-        file.write(token)
-        file.close
+      def save_oauth(token)
+        save_token(token: token, path: OAUTH_TOKEN_FILE)
       end
 
-      def read
-        file = File.new(TOKEN_FILE, 'r')
-        file.read
-      rescue Errno::ENOENT => _
-        logger.warn('Token file does not exist. Make sure you request authorization before proceeding.')
-        :no_token
+      def save_authorization(token)
+        save_token(token: token, path: AUTHORIZATION_TOKEN_FILE)
+      end
+
+      def read_oauth
+        read_token(path: OAUTH_TOKEN_FILE, error_message: 'OAuth Token file does not exist. Make sure you request authorization before proceeding.')
+      end
+
+      def read_authorization
+        read_token(path: AUTHORIZATION_TOKEN_FILE, error_message: 'Authorization Token file does not exist. Make sure you request authorization before proceeding.')
       end
 
       private
 
       def ensure_token_folder
-        FileUtils.mkdir_p(TOKEN_FOLDER)
+        FileUtils.mkdir_p(TOKENS_FOLDER)
+      end
+
+      def save_token(token:, path:)
+        ensure_token_folder
+
+        file = File.new(path, 'w')
+        file.write(token)
+        file.close
+      end
+
+      def read_token(path:, error_message:)
+        file = File.new(path, 'r')
+        file.read
+      rescue Errno::ENOENT => _
+        logger.warn(error_message)
+        :no_token
       end
     end
   end

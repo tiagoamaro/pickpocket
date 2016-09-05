@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Pickpocket
   module Authentication
     class TokenHandler
@@ -30,12 +28,8 @@ module Pickpocket
 
       private
 
-      def ensure_home_folder
-        FileUtils.mkdir_p(HOME_FOLDER)
-      end
-
       def save_token(token:, path:)
-        ensure_home_folder
+        Utility.ensure_home_folder
 
         file = File.new(path, 'w')
         file.write(token)

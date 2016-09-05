@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Pickpocket
+module Pickpocket::Authentication
   RSpec.describe TokenHandler do
     let(:token_file_path) { File.join(Dir.home, '.pickpocket', 'token') }
     let(:token_handler) { described_class.new }

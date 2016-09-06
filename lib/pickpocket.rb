@@ -1,3 +1,4 @@
+require 'pickpocket/version'
 require 'constants'
 
 require 'pickpocket/logger'

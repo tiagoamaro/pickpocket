@@ -1,9 +1,6 @@
 module Pickpocket
   module Authentication
     class TokenHandler
-      OAUTH_TOKEN_FILE         = File.join(HOME_FOLDER, 'oauth_token')
-      AUTHORIZATION_TOKEN_FILE = File.join(HOME_FOLDER, 'authorization_token')
-
       attr_accessor :logger
 
       def initialize
@@ -11,19 +8,19 @@ module Pickpocket
       end
 
       def save_oauth(token)
-        save_token(token: token, path: OAUTH_TOKEN_FILE)
+        save_token(token: token, path: Pickpocket.config.oauth_token_file)
       end
 
       def save_authorization(token)
-        save_token(token: token, path: AUTHORIZATION_TOKEN_FILE)
+        save_token(token: token, path: Pickpocket.config.authorization_token_file)
       end
 
       def read_oauth
-        read_token(path: OAUTH_TOKEN_FILE, error_message: 'OAuth Token file does not exist. Make sure you request authorization before proceeding.')
+        read_token(path: Pickpocket.config.oauth_token_file, error_message: 'OAuth Token file does not exist. Make sure you request authorization before proceeding.')
       end
 
       def read_authorization
-        read_token(path: AUTHORIZATION_TOKEN_FILE, error_message: 'Authorization Token file does not exist. Make sure you request authorization before proceeding.')
+        read_token(path: Pickpocket.config.authorization_token_file, error_message: 'Authorization Token file does not exist. Make sure you request authorization before proceeding.')
       end
 
       private

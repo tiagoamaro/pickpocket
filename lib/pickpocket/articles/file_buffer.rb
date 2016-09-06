@@ -3,7 +3,7 @@ require 'json'
 module Pickpocket
   module Articles
     class FileBuffer
-      ARTICLE_LIST_FILE = File.join(HOME_FOLDER, 'article_list')
+      ARTICLE_LIST_FILE = File.join(Pickpocket.config.home_folder, 'article_list')
 
       attr_accessor :articles_hash, :logger
 

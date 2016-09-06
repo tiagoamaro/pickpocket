@@ -16,11 +16,11 @@ module Pickpocket::Authentication
         end
       end
 
-      describe '#save_authorization' do
+      describe '#save_auth' do
         let(:token_file_path) { Pickpocket.config.authorization_token_file }
 
         it 'saves token to ~/.pickpocket/authorization_token' do
-          token_handler.save_authorization('authorization token!')
+          token_handler.save_auth('authorization token!')
 
           result = File.read(token_file_path)
           expect(result).to eq('authorization token!')
@@ -37,10 +37,10 @@ module Pickpocket::Authentication
           expect(result).to eq('reading oauth token!')
         end
 
-        it '#read_authorization' do
-          token_handler.save_authorization('reading authorization token!')
+        it '#read_auth' do
+          token_handler.save_auth('reading authorization token!')
 
-          result = token_handler.read_authorization
+          result = token_handler.read_auth
           expect(result).to eq('reading authorization token!')
         end
       end
@@ -59,10 +59,10 @@ module Pickpocket::Authentication
           expect(tempfile.read).to include('OAuth Token file does not exist. Make sure you request authorization before proceeding.')
         end
 
-        it '#read_authorization' do
+        it '#read_auth' do
           FileUtils.rm(Pickpocket.config.authorization_token_file)
 
-          result = token_handler.read_authorization
+          result = token_handler.read_auth
           tempfile.rewind
           expect(result).to eq(:no_token)
           expect(tempfile.read).to include('Authorization Token file does not exist. Make sure you request authorization before proceeding.')

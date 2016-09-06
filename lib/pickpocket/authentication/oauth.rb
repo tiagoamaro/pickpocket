@@ -35,7 +35,7 @@ module Pickpocket
         })
 
         response_token = CGI::parse(response.body)['access_token'][0]
-        token_handler.save_authorization(response_token)
+        token_handler.save_auth(response_token)
       end
     end
   end

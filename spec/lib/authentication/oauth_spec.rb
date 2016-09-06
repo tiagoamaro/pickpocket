@@ -16,7 +16,7 @@ module Pickpocket::Authentication
 
     describe '#authorize' do
       it "authorizes Pickpocket using user's token, saving it to authorization_token" do
-        expect(oauth.token_handler).to receive(:save_authorization).with('49858549-532d-55b1-62bc-21bf5b')
+        expect(oauth.token_handler).to receive(:save_auth).with('49858549-532d-55b1-62bc-21bf5b')
 
         oauth.authorize
       end

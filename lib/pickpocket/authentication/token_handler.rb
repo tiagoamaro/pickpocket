@@ -11,7 +11,7 @@ module Pickpocket
         save_token(token: token, path: Pickpocket.config.oauth_token_file)
       end
 
-      def save_authorization(token)
+      def save_auth(token)
         save_token(token: token, path: Pickpocket.config.authorization_token_file)
       end
 
@@ -19,7 +19,7 @@ module Pickpocket
         read_token(path: Pickpocket.config.oauth_token_file, error_message: 'OAuth Token file does not exist. Make sure you request authorization before proceeding.')
       end
 
-      def read_authorization
+      def read_auth
         read_token(path: Pickpocket.config.authorization_token_file, error_message: 'Authorization Token file does not exist. Make sure you request authorization before proceeding.')
       end
 

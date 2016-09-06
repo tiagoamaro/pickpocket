@@ -10,7 +10,7 @@ module Pickpocket::Articles
         file_buffer.articles_hash = sample_hash
         file_buffer.save
 
-        file_content = File.read(FileBuffer::ARTICLE_LIST_FILE)
+        file_content = File.read(Pickpocket.config.article_list_file)
         expect(file_content).to eq("{\"something\":\"in the way\",\"she\":\"moves\"}")
       end
     end

@@ -14,14 +14,14 @@ module Pickpocket
       end
 
       def request_authorization
-        uri      = URI(POCKET_OAUTH_REQUEST_URL)
+        uri      = URI(Pickpocket.config.pocket_oauth_request_url)
         response = Net::HTTP.post_form(uri, {
-            consumer_key: CONSUMER_KEY,
-            redirect_uri: POCKET_HOMEPAGE
+            consumer_key: Pickpocket.config.consumer_key,
+            redirect_uri: Pickpocket.config.pocket_homepage
         })
 
         response_token = CGI::parse(response.body)['code'][0]
-        auth_url       = %Q{#{POCKET_USER_AUTHORIZE_URL}?request_token=#{response_token}&redirect_uri=#{POCKET_HOMEPAGE}}
+        auth_url       = %Q{#{Pickpocket.config.pocket_user_authorize_url}?request_token=#{response_token}&redirect_uri=#{Pickpocket.config.pocket_homepage}}
 
         logger.info %Q{To continue, authorize this app opening the following URL: #{auth_url}}
         token_handler.save_oauth(response_token)
@@ -29,10 +29,10 @@ module Pickpocket
 
       def authorize
         response_token = token_handler.read_oauth
-        uri            = URI(POCKET_OAUTH_AUTHORIZE_URL)
+        uri            = URI(Pickpocket.config.pocket_oauth_authorize_url)
 
         response = Net::HTTP.post_form(uri, {
-            consumer_key: CONSUMER_KEY,
+            consumer_key: Pickpocket.config.consumer_key,
             code:         response_token
         })
 

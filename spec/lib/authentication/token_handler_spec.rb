@@ -6,7 +6,7 @@ module Pickpocket::Authentication
 
     context 'saving tokens' do
       describe '#save_oauth' do
-        let(:token_file_path) { File.join(Dir.home, '.pickpocket', 'oauth_token') }
+        let(:token_file_path) { Pickpocket.config.oauth_token_file }
 
         it 'saves token to ~/.pickpocket/oauth_token' do
           token_handler.save_oauth('oauth token!')
@@ -17,7 +17,7 @@ module Pickpocket::Authentication
       end
 
       describe '#save_authorization' do
-        let(:token_file_path) { File.join(Dir.home, '.pickpocket', 'authorization_token') }
+        let(:token_file_path) { Pickpocket.config.authorization_token_file }
 
         it 'saves token to ~/.pickpocket/authorization_token' do
           token_handler.save_authorization('authorization token!')
@@ -51,7 +51,7 @@ module Pickpocket::Authentication
         before(:each) { token_handler.logger = ::Logger.new(tempfile) }
 
         it '#read_oauth' do
-          FileUtils.rm(described_class::OAUTH_TOKEN_FILE)
+          FileUtils.rm(Pickpocket.config.oauth_token_file)
 
           result = token_handler.read_oauth
           tempfile.rewind
@@ -60,7 +60,7 @@ module Pickpocket::Authentication
         end
 
         it '#read_authorization' do
-          FileUtils.rm(described_class::AUTHORIZATION_TOKEN_FILE)
+          FileUtils.rm(Pickpocket.config.authorization_token_file)
 
           result = token_handler.read_authorization
           tempfile.rewind

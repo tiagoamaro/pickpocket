@@ -1,7 +1,7 @@
 require 'pickpocket/version'
-require 'constants'
 
 require 'pickpocket/logger'
+require 'pickpocket/configuration'
 require 'pickpocket/utility'
 require 'pickpocket/authentication/token_handler'
 require 'pickpocket/authentication/oauth'

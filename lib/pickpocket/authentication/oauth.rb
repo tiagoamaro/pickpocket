@@ -6,10 +6,8 @@ module Pickpocket
   module Authentication
     class Oauth
       attr_reader :token_handler
-      attr_accessor :logger
 
       def initialize
-        @logger        = Pickpocket::Logger.new
         @token_handler = TokenHandler.new
       end
 
@@ -23,7 +21,7 @@ module Pickpocket
         response_token = CGI::parse(response.body)['code'][0]
         auth_url       = %Q{#{Pickpocket.config.pocket_user_authorize_url}?request_token=#{response_token}&redirect_uri=#{Pickpocket.config.pocket_homepage}}
 
-        logger.info %Q{To continue, authorize this app opening the following URL: #{auth_url}}
+        Launchy.open(auth_url)
         token_handler.save_oauth(response_token)
       end
 

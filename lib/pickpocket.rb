@@ -1,3 +1,4 @@
+require 'launchy'
 require 'pickpocket/version'
 
 require 'pickpocket/logger'

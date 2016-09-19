@@ -10,7 +10,7 @@ module Pickpocket
     def initialize
       @logger           = ::Logger.new(STDOUT)
       @logger.level     = ::Logger::INFO
-      @logger.formatter = proc do |severity, datetime, progname, msg|
+      @logger.formatter = proc do |_severity, _datetime, _progname, msg|
         %Q{[Pickpocket] #{msg}\n}
       end
     end

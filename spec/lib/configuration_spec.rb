@@ -11,6 +11,7 @@ module Pickpocket
       it { expect(config.authorization_token_file).to eq(File.expand_path('~/.pickpocket/authorization_token')) }
       it { expect(config.oauth_token_file).to eq(File.expand_path('~/.pickpocket/oauth_token')) }
       it { expect(config.article_list_file).to eq(File.expand_path('~/.pickpocket/article_list')) }
+      it { expect(config.deleted_articles_file).to eq(File.expand_path('~/.pickpocket/deleted_list')) }
 
       it { expect(config.consumer_key).to eq('58132-f824d5fbf935681e22e86a3c') }
       it { expect(config.pocket_homepage).to eq('https://getpocket.com') }

@@ -3,6 +3,7 @@ module Pickpocket
     class TokenHandler
       attr_accessor :logger
 
+      # TODO: Use FileBuffer
       def initialize
         @logger = Pickpocket::Logger.new
       end
@@ -26,7 +27,7 @@ module Pickpocket
       private
 
       def save_token(token:, path:)
-        Utility.ensure_home_folder
+        FileUtils.mkdir_p(Pickpocket.config.home_folder)
 
         file = File.new(path, 'w')
         file.write(token)

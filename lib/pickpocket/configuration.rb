@@ -4,6 +4,7 @@ module Pickpocket
                   :authorization_token_file,
                   :oauth_token_file,
                   :article_list_file,
+                  :deleted_articles_file,
                   :consumer_key,
                   :pocket_homepage,
                   :pocket_oauth_authorize_url,
@@ -18,6 +19,7 @@ module Pickpocket
       @authorization_token_file   = File.join(@home_folder, 'authorization_token')
       @oauth_token_file           = File.join(@home_folder, 'oauth_token')
       @article_list_file          = File.join(@home_folder, 'article_list')
+      @deleted_articles_file      = File.join(@home_folder, 'deleted_list')
 
       # Pocket
       @consumer_key               = ENV.fetch('POCKET_CONSUMER_KEY', '58132-f824d5fbf935681e22e86a3c')

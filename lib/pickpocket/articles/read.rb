@@ -2,7 +2,7 @@ require 'json'
 
 module Pickpocket
   module Articles
-    class Reader
+    class Read
       attr_accessor :logger
 
       def initialize

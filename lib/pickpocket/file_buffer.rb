@@ -26,7 +26,7 @@ module Pickpocket
     # Deserialize
     def read
       articles_text = File.read(file_path)
-      @content      = JSON.parse(articles_text)
+      JSON.parse(articles_text)
     rescue StandardError => e
       logger.info("Could not read from file due to: #{e.message}")
     end

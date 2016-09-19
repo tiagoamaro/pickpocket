@@ -4,16 +4,15 @@ require 'fileutils'
 module Pickpocket
   class FileBuffer
     attr_accessor :logger
-    attr_reader :file_path, :content
+    attr_reader :file_path
 
-    def initialize(file_path:, content:)
-      @content   = content
+    def initialize(file_path:)
       @file_path = file_path
       @logger    = Pickpocket::Logger.new
     end
 
     # Serialize
-    def save
+    def save(content)
       target_folder = File.dirname(file_path)
       FileUtils.mkdir_p(target_folder)
       file          = File.new(file_path, 'w')

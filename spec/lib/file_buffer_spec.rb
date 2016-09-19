@@ -6,11 +6,11 @@ module Pickpocket
 
     describe '#save' do
       let(:content) { ['sample', { content: 2 }] }
-      let(:buffer) { described_class.new(file_path: file_path, content: content) }
+      let(:buffer) { described_class.new(file_path: file_path) }
 
       it 'saves any content (as JSON) to given path' do
-        buffer = described_class.new(file_path: file_path, content: content)
-        buffer.save
+        buffer = described_class.new(file_path: file_path)
+        buffer.save(content)
 
         file_content = File.read(file_path)
         expect(file_content).to eq("[\"sample\",{\"content\":2}]")
@@ -27,7 +27,7 @@ module Pickpocket
         it 'logs error' do
           expect(File).to receive(:dirname).and_raise(IOError, 'Fake Error')
 
-          buffer.save
+          buffer.save('Anything')
           tempfile.rewind
           expect(tempfile.read).to include('Could not write to file due to: Fake Error')
         end
@@ -37,10 +37,10 @@ module Pickpocket
 
     describe '#read' do
       let(:content) { { 'Reading' => 'Hash', 'a' => [1, 2, 3] } }
-      let(:buffer) { described_class.new(file_path: file_path, content: content) }
+      let(:buffer) { described_class.new(file_path: file_path) }
 
       it 'reads JSON content, parsing it' do
-        buffer.save
+        buffer.save(content)
 
         expect(buffer.read).to eq(content)
       end

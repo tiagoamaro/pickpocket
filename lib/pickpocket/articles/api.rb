@@ -2,7 +2,7 @@ require 'json'
 
 module Pickpocket
   module Articles
-    class Api
+    class API
       ACTION_DELETE = 'delete'
       STATE_UNREAD  = 'unread'
 

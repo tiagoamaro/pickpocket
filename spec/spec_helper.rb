@@ -8,6 +8,6 @@ Pickpocket.configure do |config|
   config.article_list_file        = File.expand_path('~/.pickpocket/test/article_list')
 end
 
-# SimpleCov
-require 'simplecov'
-SimpleCov.start
+# CodeClimate Reporter
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start

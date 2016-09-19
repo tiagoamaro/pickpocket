@@ -1,3 +1,8 @@
+# CodeClimate Reporter
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
+# Pickpocket
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'pickpocket'
 
@@ -7,7 +12,3 @@ Pickpocket.configure do |config|
   config.oauth_token_file         = File.expand_path('~/.pickpocket/test/oauth_token')
   config.article_list_file        = File.expand_path('~/.pickpocket/test/article_list')
 end
-
-# CodeClimate Reporter
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start

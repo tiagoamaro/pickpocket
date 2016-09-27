@@ -10,6 +10,7 @@ module Pickpocket
       end
 
       def pick
+        # TODO
         # Read from articles file buffer
         # Remove article ID from articles file buffer
         # Add article ID to deleted file buffer

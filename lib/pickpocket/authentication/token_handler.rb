@@ -3,7 +3,6 @@ module Pickpocket
     class TokenHandler
       attr_accessor :logger
 
-      # TODO: Use FileBuffer
       def initialize
         @logger = Pickpocket::Logger.new
       end

@@ -3,17 +3,27 @@ require 'json'
 module Pickpocket
   module Articles
     class Read
-      attr_accessor :logger
+      attr_reader :articles_list, :deleted_articles_list
 
       def initialize
-        @logger = Pickpocket::Logger.new
+        @articles_list         = FileBuffer.new(file_path: Pickpocket.config.article_list_file)
+        @deleted_articles_list = FileBuffer.new(file_path: Pickpocket.config.deleted_articles_file)
       end
 
-      def pick
-        # TODO
+      def call
         # Read from articles file buffer
+        articles = articles_list.read
+
+        # Pick a random article
+        selected_article_id = articles.keys.sample
+
+        # Remove article ID from articles
+        articles.delete(selected_article_id)
+
         # Remove article ID from articles file buffer
+
         # Add article ID to deleted file buffer
+        deleted_articles_list.read()
       end
     end
   end

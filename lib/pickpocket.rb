@@ -2,6 +2,7 @@ require 'launchy'
 require 'pickpocket/version'
 
 require 'pickpocket/articles/api'
+require 'pickpocket/articles/library'
 require 'pickpocket/articles/read'
 require 'pickpocket/articles/sync'
 require 'pickpocket/authentication/oauth'

@@ -6,8 +6,7 @@ module Pickpocket
       attr_reader :articles_list, :deleted_articles_list
 
       def initialize
-        @articles_list         = FileBuffer.new(file_path: Pickpocket.config.article_list_file)
-        @deleted_articles_list = FileBuffer.new(file_path: Pickpocket.config.deleted_articles_file)
+        @articles_list         = FileBuffer.new(file_path: Pickpocket.config.library_file)
       end
 
       def call

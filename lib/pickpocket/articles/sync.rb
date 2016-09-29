@@ -3,14 +3,16 @@ require 'json'
 module Pickpocket
   module Articles
     class Sync
-      attr_reader :api, :articles_file, :deleted_articles_file
+      attr_reader :api, :library
 
       def initialize
+        @api            = API.new
+        @library = Library.new
       end
 
       def retrieve
         article_list = api.retrieve['list']
-        articles_file.save(article_list)
+        library.renew(article_list)
       end
 
       def delete

@@ -3,9 +3,11 @@ require 'spec_helper'
 module Pickpocket::Articles
   RSpec.describe Library do
     let(:library) { described_class.new }
-    let(:library_file) { Pickpocket.config.library_file }
+    let(:store) { library.store }
 
     describe '.initialize' do
+      let(:library_file) { Pickpocket.config.library_file }
+
       it 'guarantees library file existence and read/unread hash' do
         FileUtils.rm_rf(library_file)
 
@@ -18,8 +20,6 @@ module Pickpocket::Articles
     end
 
     describe '#pick' do
-      let(:store) { library.store }
-
       context 'no articles to read' do
         let(:tempfile) { Tempfile.new('fake_logger') }
 
@@ -67,6 +67,33 @@ module Pickpocket::Articles
             expect(store[:read]).to eq(first_article.to_h)
             expect(store[:unread]).to eq(second_article.to_h)
           end
+        end
+      end
+    end
+
+    describe '#renew' do
+      let(:remote_articles) { { 'list' => 'Article List' } }
+      let(:read_articles) { {
+          'read1' => 'Anything',
+          'read2' => 'Anything'
+      } }
+
+      before(:each) do
+        store.transaction do
+          store[:read]   = read_articles
+          store[:unread] = {}
+        end
+      end
+
+      it 'renew library with pocket content, deleting read and retrieving unread articles' do
+        expect(library.api).to receive(:retrieve).and_return(remote_articles)
+        expect(library.api).to receive(:delete).with(%w(read1 read2))
+
+        library.renew
+
+        store.transaction do
+          expect(store[:read]).to eq({})
+          expect(store[:unread]).to eq('Article List')
         end
       end
     end

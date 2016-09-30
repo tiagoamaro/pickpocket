@@ -5,7 +5,7 @@ module Pickpocket
   module Articles
     class Library
       attr_accessor :logger
-      attr_reader :store
+      attr_reader :store, :api
 
       private def yaml_store
         FileUtils.mkdir_p(File.dirname(Pickpocket.config.library_file))
@@ -45,10 +45,10 @@ module Pickpocket
       # Replace unread store with content from pocket
       def renew
         store.transaction do
-          new_unread   = @api.retrieve['list']
+          new_unread   = api.retrieve['list']
           already_read = store[:read]
 
-          @api.delete(already_read.keys)
+          api.delete(already_read.keys)
           store[:unread] = new_unread
           store[:read]   = {}
         end

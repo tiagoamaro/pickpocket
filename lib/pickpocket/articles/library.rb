@@ -4,6 +4,7 @@ require 'yaml/store'
 module Pickpocket
   module Articles
     class Library
+      attr_accessor :logger
       attr_reader :store
 
       private def yaml_store
@@ -19,18 +20,11 @@ module Pickpocket
       end
 
       def initialize
-        @api   = API.new
-        @store = yaml_store
+        @api    = API.new
+        @logger = Pickpocket::Logger.new
+        @store  = yaml_store
 
         guarantee_inventory
-      end
-
-      # Replace unread store with content from pocket
-      def renew
-        articles = @api.retrieve['list']
-        store.transaction do
-          store[:unread] = articles
-        end
       end
 
       # Select an unread article, put it to the read collection and return this article
@@ -41,19 +35,22 @@ module Pickpocket
 
           if (random_article = unread.delete(random_key))
             store[:read].update({ random_key => random_article })
-
-            random_article
+            Launchy.open(random_article['resolved_url'])
+          else
+            logger.info 'You have read all articles!'
           end
         end
       end
 
-      # Clear and return read articles hash
-      def clear_read
+      # Replace unread store with content from pocket
+      def renew
         store.transaction do
-          read         = store[:read]
-          store[:read] = {}
+          new_unread   = @api.retrieve['list']
+          already_read = store[:read]
 
-          read
+          @api.delete(already_read.keys)
+          store[:unread] = new_unread
+          store[:read]   = {}
         end
       end
     end

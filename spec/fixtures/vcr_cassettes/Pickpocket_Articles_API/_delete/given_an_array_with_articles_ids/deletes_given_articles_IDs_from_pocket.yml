@@ -1,0 +1,177 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://getpocket.com/v3/oauth/request
+    body:
+      encoding: US-ASCII
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&redirect_uri=https%3A%2F%2Fgetpocket.com
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - getpocket.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sun, 02 Oct 2016 12:53:47 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="ALL CURa ADMa DEVa OUR IND UNI COM NAV INT STA
+        PRE"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=f3v2rmmvoeo806lefm0uc98rk4; path=/
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Source:
+      - Pocket
+      Content-Length:
+      - '55'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: code=cefa8671-7002-3e72-a8d4-e734ac
+    http_version: 
+  recorded_at: Sun, 02 Oct 2016 12:53:46 GMT
+- request:
+    method: post
+    uri: https://getpocket.com/v3/oauth/authorize
+    body:
+      encoding: US-ASCII
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&code=cefa8671-7002-3e72-a8d4-e734ac
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - getpocket.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sun, 02 Oct 2016 12:53:53 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="ALL CURa ADMa DEVa OUR IND UNI COM NAV INT STA
+        PRE"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=23m7157j2qreatn1l5a8e9cup0; path=/
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Source:
+      - Pocket
+      Content-Length:
+      - '94'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: access_token=9017280f-f994-d41a-3f90-2926ee&username=loroteiro%40mailismagic.com
+    http_version: 
+  recorded_at: Sun, 02 Oct 2016 12:53:52 GMT
+- request:
+    method: post
+    uri: https://getpocket.com/v3/send
+    body:
+      encoding: US-ASCII
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&access_token=9017280f-f994-d41a-3f90-2926ee&actions=%5B%7B%22action%22%3A%22delete%22%2C%22item_id%22%3A%222148956%22%7D%2C%7B%22action%22%3A%22delete%22%2C%22item_id%22%3A%2211618554%22%7D%2C%7B%22action%22%3A%22delete%22%2C%22item_id%22%3A%2232935338%22%7D%5D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - getpocket.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2016 12:53:54 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="ALL CURa ADMa DEVa OUR IND UNI COM NAV INT STA
+        PRE"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=d0rs1m08kcnp4lbaehcie813r5; path=/
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Limit-Key-Limit:
+      - '10000'
+      X-Limit-Key-Remaining:
+      - '9982'
+      X-Limit-Key-Reset:
+      - '1727'
+      X-Limit-User-Limit:
+      - '500'
+      X-Limit-User-Remaining:
+      - '496'
+      X-Limit-User-Reset:
+      - '2903'
+      X-Source:
+      - Pocket
+      Content-Length:
+      - '57'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"action_results":[true,true,true],"status":1}'
+    http_version: 
+  recorded_at: Sun, 02 Oct 2016 12:53:53 GMT
+recorded_with: VCR 3.0.3

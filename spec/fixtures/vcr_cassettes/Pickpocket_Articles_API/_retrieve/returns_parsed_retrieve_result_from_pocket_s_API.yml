@@ -1,0 +1,180 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://getpocket.com/v3/oauth/request
+    body:
+      encoding: US-ASCII
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&redirect_uri=https%3A%2F%2Fgetpocket.com
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - getpocket.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sun, 02 Oct 2016 12:42:10 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="ALL CURa ADMa DEVa OUR IND UNI COM NAV INT STA
+        PRE"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=clqftu9mgva9t2v5nc07jvaqg6; path=/
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Source:
+      - Pocket
+      Content-Length:
+      - '55'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: code=71cfb13e-888b-abc6-6090-e71b27
+    http_version: 
+  recorded_at: Sun, 02 Oct 2016 12:42:09 GMT
+- request:
+    method: post
+    uri: https://getpocket.com/v3/oauth/authorize
+    body:
+      encoding: US-ASCII
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&code=71cfb13e-888b-abc6-6090-e71b27
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - getpocket.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Date:
+      - Sun, 02 Oct 2016 12:42:16 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="ALL CURa ADMa DEVa OUR IND UNI COM NAV INT STA
+        PRE"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=ek921f0v0dn8c6r931c0ilgho0; path=/
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Source:
+      - Pocket
+      Content-Length:
+      - '94'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: access_token=9017280f-f994-d41a-3f90-2926ee&username=loroteiro%40mailismagic.com
+    http_version: 
+  recorded_at: Sun, 02 Oct 2016 12:42:15 GMT
+- request:
+    method: post
+    uri: https://getpocket.com/v3/get
+    body:
+      encoding: US-ASCII
+      string: consumer_key=58132-f824d5fbf935681e22e86a3c&access_token=9017280f-f994-d41a-3f90-2926ee&state=unread
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - getpocket.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2016 12:42:17 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="ALL CURa ADMa DEVa OUR IND UNI COM NAV INT STA
+        PRE"
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - PHPSESSID=kmv541uktapafbpevcvj9hiv34; path=/
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Limit-Key-Limit:
+      - '10000'
+      X-Limit-Key-Remaining:
+      - '9985'
+      X-Limit-Key-Reset:
+      - '2424'
+      X-Limit-User-Limit:
+      - '500'
+      X-Limit-User-Remaining:
+      - '499'
+      X-Limit-User-Reset:
+      - '3600'
+      X-Source:
+      - Pocket
+      Content-Length:
+      - '522'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"status":1,"complete":1,"list":{"32935338":{"item_id":"32935338","resolved_id":"32935338","given_url":"https:\/\/duckduckgo.com\/","given_title":"","favorite":"0","status":"0","time_added":"1475411995","time_updated":"1475411995","time_read":"0","time_favorited":"0","sort_id":0,"resolved_title":"DuckDuckGo","resolved_url":"https:\/\/duckduckgo.com\/","excerpt":"","is_article":"0","is_index":"1","has_video":"0","has_image":"0","word_count":"0"},"11618554":{"item_id":"11618554","resolved_id":"11618554","given_url":"https:\/\/www.bing.com\/","given_title":"","favorite":"0","status":"0","time_added":"1475411991","time_updated":"1475411991","time_read":"0","time_favorited":"0","sort_id":1,"resolved_title":"Bing","resolved_url":"https:\/\/www.bing.com\/","excerpt":"","is_article":"0","is_index":"1","has_video":"0","has_image":"0","word_count":"0"},"2148956":{"item_id":"2148956","resolved_id":"2148956","given_url":"https:\/\/www.google.com\/","given_title":"","favorite":"0","status":"0","time_added":"1475411982","time_updated":"1475411982","time_read":"0","time_favorited":"0","sort_id":2,"resolved_title":"Google","resolved_url":"https:\/\/google.com\/","excerpt":"Search
+        Images Maps Play YouTube News Gmail Drive More \u00bb Web History | Settings
+        | Sign in           Advertising\u00a0ProgramsBusiness Solutions+GoogleAbout
+        Google  \u00a9 2016 - Privacy - Terms","is_article":"0","is_index":"1","has_video":"0","has_image":"0","word_count":"21"}},"error":null,"search_meta":{"search_type":"normal"},"since":1475412137}'
+    http_version: 
+  recorded_at: Sun, 02 Oct 2016 12:42:16 GMT
+recorded_with: VCR 3.0.3

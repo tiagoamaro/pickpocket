@@ -1,5 +1,6 @@
 # Pickpocket
 
+[![Gem Version](https://badge.fury.io/rb/pick-pocket.svg)](https://badge.fury.io/rb/pick-pocket)
 [![Build Status](https://travis-ci.org/tiagoamaro/pickpocket.svg?branch=master)](https://travis-ci.org/tiagoamaro/pickpocket)
 [![Code Climate](https://codeclimate.com/github/tiagoamaro/pickpocket/badges/gpa.svg)](https://codeclimate.com/github/tiagoamaro/pickpocket)
 [![Test Coverage](https://codeclimate.com/github/tiagoamaro/pickpocket/badges/coverage.svg)](https://codeclimate.com/github/tiagoamaro/pickpocket/coverage)

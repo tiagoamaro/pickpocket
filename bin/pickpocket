@@ -31,6 +31,12 @@ class PickpocketCLI < Thor
     library = Pickpocket::Articles::Library.new
     library.renew
   end
+
+  desc 'stats', 'Show the number of read/unread articles you have on your local library'
+  def stats
+    library = Pickpocket::Articles::Library.new
+    library.stats
+  end
 end
 
 PickpocketCLI.start(ARGV)

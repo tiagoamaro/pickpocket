@@ -53,6 +53,18 @@ module Pickpocket
           store[:read]   = {}
         end
       end
+
+      # Show stats from your local articles
+      def stats
+        guarantee_inventory
+        store.transaction do
+          unread_count = store[:unread].keys.size
+          read_count   = store[:read].keys.size
+
+          logger.info %Q{You have #{read_count} read articles}
+          logger.info %Q{You have #{unread_count} unread articles}
+        end
+      end
     end
   end
 end

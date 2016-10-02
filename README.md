@@ -29,6 +29,8 @@ To use Pickpocket, you first need to go through Pocket's OAuth authentication pr
     - Selects a random article from your list, and open your browser with its resolved URL
 - `pickpocket renew`
     - This will synchronize your local library with your remote. Keep in mind: any article marked as read locally **WILL DELETED** from your remote library
+- `pickpocket stats`
+    - Show the number of read/unread articles you have on your local library
 
 ## Pickpocket Files
 

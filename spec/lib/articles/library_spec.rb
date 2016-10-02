@@ -74,7 +74,7 @@ module Pickpocket::Articles
     end
 
     describe '#renew' do
-      let(:remote_articles) { { 'list' => 'Article List' } }
+      let(:remote_articles) { { 'list' => { 'remote1' => 'remote article 1' } } }
       let(:read_articles) { {
           'read1' => 'Anything',
           'read2' => 'Anything'
@@ -95,8 +95,32 @@ module Pickpocket::Articles
 
         store.transaction do
           expect(store[:read]).to eq({})
-          expect(store[:unread]).to eq('Article List')
+          expect(store[:unread]).to eq({ 'remote1' => 'remote article 1' })
         end
+      end
+    end
+
+    describe '#stats' do
+      let(:tempfile) { Tempfile.new('fake_logger') }
+
+      before(:each) do
+        library.logger = ::Logger.new(tempfile)
+        store.transaction do
+          store[:read]   = { article1: {}, article2: {}, article3: {} }
+          store[:unread] = { article4: {}, article5: {} }
+        end
+      end
+
+      it 'outputs the amount of unread/read articles on your store' do
+
+
+        library.stats
+
+        tempfile.rewind
+        log = tempfile.read
+
+        expect(log).to include('You have 3 read articles')
+        expect(log).to include('You have 2 unread articles')
       end
     end
   end

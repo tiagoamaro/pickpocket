@@ -14,7 +14,7 @@ module Pickpocket
 
       def initialize
         @api    = API.new
-        @logger = Pickpocket::Logger.new
+        @logger = Pickpocket::Logger
         @store  = yaml_store
       end
 

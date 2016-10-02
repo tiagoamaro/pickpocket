@@ -4,7 +4,7 @@ module Pickpocket
       attr_accessor :logger
 
       def initialize
-        @logger = Pickpocket::Logger.new
+        @logger = Pickpocket::Logger
       end
 
       def save_oauth(token)

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Pickpocket
   RSpec.describe Logger do
-    let(:pickpocket_logger) { described_class.new }
+    let(:pickpocket_logger) { described_class }
 
     describe 'allows logging override' do
       let(:tempfile) { Tempfile.new('tempfile_logger') }

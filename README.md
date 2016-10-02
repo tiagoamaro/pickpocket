@@ -10,7 +10,7 @@ Pickpocket is a command line tool which will help you with your [Pocket](http://
 
 Pickpocket is packaged as a Ruby gem.
 
-Install it by running `gem install pickpocket`
+Install it by running `gem install pick-pocket`
 
 ## Usage
 

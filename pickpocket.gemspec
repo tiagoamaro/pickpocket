@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'pickpocket/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'pickpocket'
+  spec.name          = 'pick-pocket'
   spec.version       = Pickpocket::VERSION
   spec.authors       = ['Tiago Amaro']
   spec.email         = ['tiagopadrela@gmail.com']

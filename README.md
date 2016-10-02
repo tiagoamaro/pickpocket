@@ -30,6 +30,17 @@ To use Pickpocket, you first need to go through Pocket's OAuth authentication pr
 - `pickpocket renew`
     - This will synchronize your local library with your remote. Keep in mind: any article marked as read locally **WILL DELETED** from your remote library
 
+## Pickpocket Files
+
+All Pickpocket files are stored at the `~/.pickpocket` folder.
+
+- `library_file`
+    - YAML file which stores your local library, marking articles as unread or read
+- `authorization_token`
+    - File which stores your authorization token
+- `oauth_token`
+    - File which stores your OAuth token
+
 ## Don't Trust Me?
 
 Pickpocket ships with its own consumer key, which will ask for access to modify/retrieve your articles.

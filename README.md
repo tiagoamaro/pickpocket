@@ -6,6 +6,12 @@
 
 Pickpocket is a command line tool which will help you with your [Pocket](http://getpocket.com/) library. It selects a random article for you to read, opening your browser and marking it is deleted. 
 
+## Installation
+
+Pickpocket is packaged as a Ruby gem.
+
+Install it by running `gem install pickpocket`
+
 ## Usage
 
 ### Authentication

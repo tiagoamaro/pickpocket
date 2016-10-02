@@ -1,52 +1,41 @@
-# Pickpocket (WIP)
+# Pickpocket
 
 [![Build Status](https://travis-ci.org/tiagoamaro/pickpocket.svg?branch=master)](https://travis-ci.org/tiagoamaro/pickpocket)
 [![Code Climate](https://codeclimate.com/github/tiagoamaro/pickpocket/badges/gpa.svg)](https://codeclimate.com/github/tiagoamaro/pickpocket)
 [![Test Coverage](https://codeclimate.com/github/tiagoamaro/pickpocket/badges/coverage.svg)](https://codeclimate.com/github/tiagoamaro/pickpocket/coverage)
 
-## TODO
-
-* Document methods
-
--------
-
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pickpocket`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'pickpocket'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install pickpocket
+Pickpocket is a command line tool which will help you with your [Pocket](http://getpocket.com/) library. It selects a random article for you to read, opening your browser and marking it is deleted. 
 
 ## Usage
 
-TODO: Write usage instructions here
+### Authentication
 
-## Development
+To use Pickpocket, you first need to go through Pocket's OAuth authentication process.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+1. Execute the `pickpocket oauth` command
+    1. This will open your web browser, asking you to approve Pickpocket's OAuth token
+2. Execute the `pickpocket authorize` command
+    1. This will authorize your OAuth token against Pocket, creating an authorization token
+    
+### Usage
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+- `pickpocket pick`
+    - Selects a random article from your list, and open your browser with its resolved URL
+- `pickpocket renew`
+    - This will synchronize your local library with your remote. Keep in mind this will delete articles marked as read
 
-## Contributing
+## Don't Trust Me?
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pickpocket. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Pickpocket ships with its own consumer key, which will ask for access to modify/retrieve your articles.
+ 
+If you don't like this idea, you can use your own consumer key, setting up the `POCKET_CONSUMER_KEY` environment variable before calling it.
 
+Example:
+
+`POCKET_CONSUMER_KEY="my-consumer-key" pickpocket oauth`
+ 
+> To know more about consumer keys and how Pocket deals with third party applications, read more on [Pocket's Authentication API documentation](https://getpocket.com/developer/docs/authentication). 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+MIT

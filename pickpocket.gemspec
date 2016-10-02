@@ -24,10 +24,11 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "bin"
-  spec.executables   << "pickpocket"
+  spec.executables   = ["pickpocket"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "launchy", "~> 2.4.3"
+  spec.add_dependency "thor", "~> 0.19.1"
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"

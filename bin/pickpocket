@@ -1,3 +1,36 @@
 #!/usr/bin/env ruby
 
+require 'bundler/setup'
 require 'pickpocket'
+
+require 'thor'
+
+class PickpocketCLI < Thor
+  package_name 'Pickpocket'
+
+  desc 'oauth', '1st authorization step: ask Pocket to allow Pickpocket app'
+  def oauth
+    oauth = Pickpocket::Authentication::Oauth.new
+    oauth.request_authorization
+  end
+
+  desc 'authorize', '2nd authorization step: allow Pickpocket read/write access to your library'
+  def authorize
+    oauth = Pickpocket::Authentication::Oauth.new
+    oauth.authorize
+  end
+
+  desc 'pick', 'Picks a random article from your library (marking it as read)'
+  def pick
+    library = Pickpocket::Articles::Library.new
+    library.pick
+  end
+
+  desc 'renew', 'Syncs your local library with your Pocket. It will delete read articles and download new articles from your library'
+  def renew
+    library = Pickpocket::Articles::Library.new
+    library.renew
+  end
+end
+
+PickpocketCLI.start(ARGV)

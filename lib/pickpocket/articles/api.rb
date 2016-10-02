@@ -19,6 +19,9 @@ module Pickpocket
             access_token: access_token,
             state:        STATE_UNREAD
         })
+
+        # TODO: error handling (unauthorized, etc)
+
         JSON.parse(response.body)
       end
 
@@ -35,6 +38,9 @@ module Pickpocket
             access_token: access_token,
             actions:      JSON.dump(json_action)
         })
+
+        # TODO: error handling (unauthorized, etc)
+
         JSON.parse(response.body)
       end
 

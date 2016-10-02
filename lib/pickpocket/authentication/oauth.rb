@@ -19,9 +19,10 @@ module Pickpocket
         })
 
         response_token = CGI::parse(response.body)['code'][0]
-        auth_url       = %Q{#{Pickpocket.config.pocket_user_authorize_url}?request_token=#{response_token}&redirect_uri=#{Pickpocket.config.pocket_homepage}}
+        auth_url       = URI(Pickpocket.config.pocket_user_authorize_url)
+        auth_url.query = "request_token=#{response_token}&redirect_uri=#{Pickpocket.config.pocket_homepage}"
 
-        Launchy.open(auth_url)
+        Launchy.open(auth_url.to_s)
         token_handler.save_oauth(response_token)
       end
 

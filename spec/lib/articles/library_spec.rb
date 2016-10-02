@@ -5,11 +5,13 @@ module Pickpocket::Articles
     let(:library) { described_class.new }
     let(:store) { library.store }
 
-    describe '.initialize' do
+    describe '#guarantee_inventory' do
       let(:library_file) { Pickpocket.config.library_file }
 
       it 'guarantees library file existence and read/unread hash' do
         FileUtils.rm_rf(library_file)
+
+        library.guarantee_inventory
 
         store = library.store
         store.transaction do

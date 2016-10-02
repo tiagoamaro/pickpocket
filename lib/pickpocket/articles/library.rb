@@ -12,23 +12,22 @@ module Pickpocket
         YAML::Store.new(Pickpocket.config.library_file)
       end
 
-      private def guarantee_inventory
+      def initialize
+        @api    = API.new
+        @logger = Pickpocket::Logger.new
+        @store  = yaml_store
+      end
+
+      def guarantee_inventory
         store.transaction do
           store[:read]   = {} if store[:read].nil?
           store[:unread] = {} if store[:unread].nil?
         end
       end
 
-      def initialize
-        @api    = API.new
-        @logger = Pickpocket::Logger.new
-        @store  = yaml_store
-
-        guarantee_inventory
-      end
-
       # Select an unread article, put it to the read collection and return this article
       def pick
+        guarantee_inventory
         store.transaction do
           unread     = store[:unread]
           random_key = unread.keys.sample
@@ -44,6 +43,7 @@ module Pickpocket
 
       # Replace unread store with content from pocket
       def renew
+        guarantee_inventory
         store.transaction do
           new_unread   = api.retrieve['list']
           already_read = store[:read]

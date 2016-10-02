@@ -1,4 +1,5 @@
 require 'logger'
+require 'forwardable'
 
 module Pickpocket
   class Logger

@@ -45,10 +45,10 @@ module Pickpocket
       def renew
         guarantee_inventory
         store.transaction do
-          new_unread   = api.retrieve['list']
           already_read = store[:read]
-
           api.delete(already_read.keys)
+
+          new_unread   = api.retrieve['list']
           store[:unread] = new_unread
           store[:read]   = {}
         end

@@ -26,17 +26,20 @@ module Pickpocket
       end
 
       # Select an unread article, put it to the read collection and return this article
-      def pick
+      # @param [Integer] quantity. Quantity of articles to open.
+      def pick(quantity = 1)
         guarantee_inventory
         store.transaction do
-          unread     = store[:unread]
-          random_key = unread.keys.sample
+          quantity.times do
+            unread     = store[:unread]
+            random_key = random_hash_key(unread)
 
-          if (random_article = unread.delete(random_key))
-            store[:read].update({ random_key => random_article })
-            Launchy.open(random_article['resolved_url'])
-          else
-            logger.info 'You have read all articles!'
+            if (random_article = unread.delete(random_key))
+              store[:read].update({ random_key => random_article })
+              Launchy.open(random_article['resolved_url'])
+            else
+              logger.info 'You have read all articles!'
+            end
           end
         end
       end
@@ -64,6 +67,14 @@ module Pickpocket
           logger.info %Q{You have #{read_count} read articles}
           logger.info %Q{You have #{unread_count} unread articles}
         end
+      end
+
+      private
+
+      # @param [Hash] unread_articles
+      # @return [String, NilClass]
+      def random_hash_key(unread_articles)
+        unread_articles.keys.sample
       end
     end
   end

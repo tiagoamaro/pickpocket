@@ -48,26 +48,38 @@ module Pickpocket::Articles
 
         let(:first_article) { PocketArticle.new('key1', 'https://www.example1.com') }
         let(:second_article) { PocketArticle.new('key2', 'https://www.example2.com') }
+        let(:articles_hash) { first_article.to_h.merge(second_article.to_h) }
 
         before(:each) do
-          allow_any_instance_of(Array).to receive(:sample).and_return('key1')
-
-          store.transaction do
-            store[:unread] = {
-                first_article.key  => first_article.value,
-                second_article.key => second_article.value
-            }
-          end
+          store.transaction { store[:unread] = articles_hash }
         end
 
-        it 'select an unread article, open it with Launchy and move it to the read hash' do
-          expect(Launchy).to receive(:open).with('https://www.example1.com')
+        describe 'select an unread article, open it with Launchy and move it to the read hash' do
+          it do
+            allow(library).to receive(:random_hash_key).and_return('key1')
+            expect(Launchy).to receive(:open).with('https://www.example1.com')
 
-          library.pick
+            library.pick
 
-          store.transaction do
-            expect(store[:read]).to eq(first_article.to_h)
-            expect(store[:unread]).to eq(second_article.to_h)
+            store.transaction do
+              expect(store[:read]).to eq(first_article.to_h)
+              expect(store[:unread]).to eq(second_article.to_h)
+            end
+          end
+
+          context 'given a quantity of articles to open' do
+            it do
+              allow(library).to receive(:random_hash_key).and_return('key1', 'key2')
+              expect(Launchy).to receive(:open).with('https://www.example1.com')
+              expect(Launchy).to receive(:open).with('https://www.example2.com')
+
+              library.pick(2)
+
+              store.transaction do
+                expect(store[:read]).to eq(articles_hash)
+                expect(store[:unread]).to eq({})
+              end
+            end
           end
         end
       end

@@ -20,9 +20,12 @@ class PickpocketCLI < Thor
   end
 
   desc 'pick', 'Picks a random article from your library (marking it as read)'
+  method_option :quantity, aliases: '-q', banner: '1', desc: 'Quantity of articles to open', type: :numeric, default: 1
   def pick
+    quantity = options[:quantity].to_i
+
     library = Pickpocket::Articles::Library.new
-    library.pick
+    library.pick(quantity)
   end
 
   desc 'renew', 'Syncs your local library with your Pocket. It will delete read articles and download new articles from your library'

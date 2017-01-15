@@ -36,7 +36,7 @@ module Pickpocket
 
             if (random_article = unread.delete(random_key))
               store[:read].update({ random_key => random_article })
-              Launchy.open(random_article['resolved_url'])
+              Launchy.open(random_article['given_url'])
             else
               logger.info 'You have read all articles!'
             end

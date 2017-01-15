@@ -36,9 +36,9 @@ module Pickpocket::Articles
       end
 
       context 'there are articles to read' do
-        PocketArticle = Struct.new(:key, :resolved_url) do
+        PocketArticle = Struct.new(:key, :given_url) do
           def value
-            { 'resolved_url' => resolved_url }
+            { 'given_url' => given_url }
           end
 
           def to_h

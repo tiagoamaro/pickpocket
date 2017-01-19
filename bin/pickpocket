@@ -32,6 +32,7 @@ class PickpocketCLI < Thor
   def renew
     library = Pickpocket::Articles::Library.new
     library.renew
+    library.stats
   end
 
   desc 'stats', 'Show the number of read/unread articles you have on your local library'

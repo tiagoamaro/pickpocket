@@ -110,6 +110,24 @@ module Pickpocket::Articles
           expect(store[:unread]).to eq({ 'remote1' => 'remote article 1' })
         end
       end
+
+      # Regression for https://gist.github.com/tiagoamaro/c85cc7a0ad1702663bd642b980c3bdf8
+      context 'api retrieves empty article list' do
+        let(:remote_articles) { { 'list' => [] } }
+        let(:read_articles) { {} }
+
+        it 'keeps library storage as hashes' do
+          expect(library.api).to receive(:retrieve).and_return(remote_articles)
+          expect(library.api).to receive(:delete).with([])
+
+          library.renew
+
+          store.transaction do
+            expect(store[:read]).to eq({})
+            expect(store[:unread]).to eq({})
+          end
+        end
+      end
     end
 
     describe '#stats' do

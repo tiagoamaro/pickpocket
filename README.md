@@ -32,7 +32,7 @@ To use Pickpocket, you first need to go through Pocket's OAuth authentication pr
         - `pickpocket pick --quantity 5` (open 5 articles)
         - `pickpocket pick -q 10` (open 10 articles)
 - `pickpocket renew`
-    - This will synchronize your local library with your remote. Keep in mind: any article marked as read locally **WILL DELETED** from your remote library
+    - This will synchronize your local library with your remote. Keep in mind: any article marked as read **WILL BE DELETED** from your remote library
 - `pickpocket stats`
     - Show the number of read/unread articles you have on your local library
 

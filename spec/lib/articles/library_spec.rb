@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'tempfile'
 
 module Pickpocket::Articles
   RSpec.describe Library do

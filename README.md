@@ -1,3 +1,9 @@
+# DEPRECATED
+
+This CLI has been superseded by its Rust version: https://github.com/tiagoamaro/pickpocket-rust.
+
+-----
+
 # Pickpocket
 
 [![Gem Version](https://badge.fury.io/rb/pick-pocket.svg)](https://badge.fury.io/rb/pick-pocket)
